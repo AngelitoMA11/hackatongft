@@ -1,0 +1,2 @@
+docker build -t europe-west1-docker.pkg.dev/hackathon-2025-455513/guardian/guardian_datos:latest C:\Users\angel\OneDrive\Escritorio\MASTER\GITHUB\hackatongft\terraform\module\cloud_run_generator
+docker push   europe-west1-docker.pkg.dev/hackathon-2025-455513/guardian/guardian_datos:latest

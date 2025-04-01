@@ -27,3 +27,17 @@ variable "region" {
   description = "Región de GCP donde se desplegarán los recursos."
   type        = string
 }
+variable "cloud_run_job_api" {
+  description = "Nombre del Cloud Run Job"
+  type        = string
+}
+
+variable "repository_name_api" {
+  description = "Nombre del repositorio en Artifact Registry"
+  type        = string
+}
+
+variable "image_name_api" {
+  description = "Nombre de la imagen en Artifact Registry"
+  type        = string
+}
