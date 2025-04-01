@@ -1,0 +1,6 @@
+uuid
+flask
+getmac
+psycopg2-binary
+python-dotenv
+requests
