@@ -10,7 +10,9 @@ module "bigquery" {
   source     = "./module/bigquery"
   project_id = var.project_id
   bq_dataset = var.bq_dataset
-  
+  tables = [
+    { name = "wifi", schema = "module/bigquery/schemas/wifi.json" }
+  ]
 }
 
 module "cloud_run_generator" {

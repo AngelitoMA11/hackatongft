@@ -8,3 +8,11 @@ variable "bq_dataset" {
   type        = string
 }
 
+variable "tables" {
+  description = "Lista de nombres de tablas con sus esquemas"
+  type        = list(object({
+    name   = string
+    schema = string
+  }))
+}
+

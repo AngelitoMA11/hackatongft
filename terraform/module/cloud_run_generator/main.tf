@@ -35,24 +35,6 @@ resource "google_cloud_run_v2_job" "job" {
       containers {
         image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest"
         
-        # Variables explícitas para que tu código Python las lea con os.getenv(...)
-        env {
-          name  = "GCP_PROJECT_ID"
-          value = var.project_id
-        }
-        env {
-          name  = "GCP_TOPIC_ID"
-          value = var.topic_wifi
-        }
-        
-        # Si deseas agregar variables adicionales desde un mapa (opcional)
-        dynamic "env" {
-          for_each = var.env_vars
-          content {
-            name  = each.key
-            value = each.value
-          }
-        }
       }
     }
   }

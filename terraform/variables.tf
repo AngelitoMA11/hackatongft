@@ -41,3 +41,9 @@ variable "image_name_api" {
   description = "Nombre de la imagen en Artifact Registry"
   type        = string
 }
+
+variable "wifi" {
+  description = "Nombre de la tabla de BigQuery para los datos de match."
+  type        = string
+}
+

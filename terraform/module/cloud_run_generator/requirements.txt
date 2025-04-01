@@ -1,6 +1,1 @@
-fastapi
-uvicorn
-google-cloud-pubsub
-faker
-unidecode
-
+flask
