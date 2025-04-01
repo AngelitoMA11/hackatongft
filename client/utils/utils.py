@@ -1,6 +1,13 @@
+import getmac
 import urllib.request
 import json
 import ssl
+import requests
+import os
+
+
+def get_mac_address():
+    return getmac.get_mac_address()
 
 def get_public_ip():
     try:
@@ -12,3 +19,4 @@ def get_public_ip():
     except Exception as e:
         print(f"First method failed: {e}")
     return "Could not determine public IP"
+
