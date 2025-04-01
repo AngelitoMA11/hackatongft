@@ -18,8 +18,7 @@ resource "null_resource" "docker_auth" {
 resource "null_resource" "build_push_image" {
   provisioner "local-exec" {
     command = <<EOT
-      docker build --platform=linux/amd64 -t ${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest ${path.module}
-      docker push   ${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest
+      docker build --platform=linux/amd64 -t ${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest ${path.module} && docker push ${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest
     EOT
   }
 
@@ -38,11 +37,11 @@ resource "google_cloud_run_v2_job" "job" {
         
         # Variables explícitas para que tu código Python las lea con os.getenv(...)
         env {
-          name  = "PROJECT_ID"
+          name  = "GCP_PROJECT_ID"
           value = var.project_id
         }
         env {
-          name  = "TOPIC_REQUESTS"
+          name  = "GCP_TOPIC_ID"
           value = var.topic_wifi
         }
         
