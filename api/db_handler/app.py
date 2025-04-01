@@ -45,7 +45,6 @@ def check_user_registration(mac_address):
     
     conn = get_connection()
     cursor = conn.cursor()
-    create_table()
     
     cursor.execute("SELECT * FROM usuarios WHERE mac_address = %s", (mac_address,))
     user = cursor.fetchone()
@@ -62,7 +61,6 @@ def check_user_registration(mac_address):
 def get_user(mac_address):
     conn = get_connection()
     cursor = conn.cursor()
-    create_table()
     
     cursor.execute("SELECT * FROM usuarios WHERE mac_address = %s", (mac_address,))
     user = cursor.fetchone()
@@ -98,7 +96,6 @@ def create_user():
     
     conn = get_connection()
     cursor = conn.cursor()
-    create_table()
     
     cursor.execute("INSERT INTO usuarios (mac_address, name, surname, mail, grade, academic_year) VALUES (%s, %s, %s, %s, %s, %s)",
                    (mac_address, name, surname, mail, grade, academic_year))
@@ -110,4 +107,5 @@ def create_user():
     return jsonify({"message": "Usuario creado exitosamente"}), 201
 
 if __name__ == "__main__":
+    create_table()
     app.run(host="0.0.0.0", port=8000, debug=True)
