@@ -1,0 +1,6 @@
+project_id = "hackathon-2025-455513"
+region     = "europe-west1"
+zone       = "europe-west1-b"
+bq_dataset = "db-wifi-connection"
+topic_wifi  = "guardian"
+sub_wifi = "guardian-sub"
