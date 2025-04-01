@@ -1,5 +1,0 @@
-Flask
-ipaddress
-google-cloud-pubsub
-python-dotenv
-
