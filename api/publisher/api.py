@@ -5,7 +5,7 @@ import os
 from google.cloud import pubsub_v1
 from dotenv import load_dotenv
 
-# Cargar variables de entorno
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -19,24 +19,26 @@ topic_path = publisher.topic_path(PROJECT_ID, TOPIC_ID)
 @app.route('/datos', methods=['POST'])
 def recibir_datos():
     data = request.get_json()
-    nombre = data.get('nombre')
+    
+    mac_address = data.get('mac_address')
     ip = data.get('ip')
+    web = data.get('web')
+    timestamp = data.get('timestamp')
 
-    if not nombre or not ip:
-        return jsonify({'error': 'Faltan campos: nombre o ip'}), 400
+    message = {
+        'mac_address': mac_address,
+        'ip': ip,
+        'web': web,
+        'timestamp': timestamp
+    }
 
     try:
-        ipaddress.ip_address(ip)
-    except ValueError:
-        return jsonify({'error': 'IP inválida'}), 400
-
-    mensaje = {'nombre': nombre, 'ip': ip}
-    try:
-        mensaje_json = json.dumps(mensaje)
-        publisher.publish(topic_path, mensaje_json.encode('utf-8'))
-        return jsonify({'mensaje': 'Publicado correctamente', 'datos': mensaje}), 200
+        future = publisher.publish(topic_path, json.dumps(message).encode("utf-8"))
+        print(f"Mensaje publicado: {message}")
     except Exception as e:
-        return jsonify({'error': 'Fallo al publicar', 'detalle': str(e)}), 500
+        print(f"Error publicando el mensaje: {e}")
+
+    return '', 204 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
