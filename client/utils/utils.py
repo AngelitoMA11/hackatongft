@@ -4,6 +4,8 @@ import json
 import ssl
 import requests
 import os
+from mitmproxy import http
+
 
 
 def get_mac_address():
@@ -19,6 +21,19 @@ def get_public_ip():
     except Exception as e:
         print(f"First method failed: {e}")
     return "Could not determine public IP"
+
+url_storage = []  # Global list to store URLs
+
+def get_web(flow: http.HTTPFlow):
+    try:
+        if flow.request.pretty_url:
+            url = flow.request.pretty_url
+            url_storage.append(url)  # Store URL in the list
+            return url
+        return "No URL found"
+    except Exception as e:
+        print(f"Error getting web URL: {e}")
+        return "Could not determine web URL"
 
 def is_mac_registered(mac_address):
     try:
