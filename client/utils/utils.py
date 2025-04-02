@@ -92,13 +92,15 @@ def send_data_to_endpoint(data):
             print("Error: API_PUBSUB_URL environment variable not set")
             return False
         
-        response = requests.post(f"{API_URL}/datos/", json=data)
+        response = requests.post(API_URL, json=data)
         
         if response.status_code == 200:
             print("Data sent successfully.")
             return True
-        else:
-            print(f"Error: API request failed with status code {response.status_code}")
+        elif response.status_code == 404:
+            print(f"Error: API request failed")
+        else: 
+            print(f"Sent to Pub/Sub")
             return False
     except Exception as e:
         print(f"Error sending data: {str(e)}")
