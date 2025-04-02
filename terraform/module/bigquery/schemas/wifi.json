@@ -1,0 +1,22 @@
+[
+  {"name": "student_id", "type": "INTEGER", "mode": "NULLABLE"}, 
+  {"name": "name", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "program", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "career", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "last_seen", "type": "TIMESTAMP", "mode": "NULLABLE"}, 
+  {"name": "attendance_record", "type": "INTEGER", "mode": "NULLABLE"}, 
+  {"name": "connection_id", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "is_online", "type": "BOOLEAN", "mode": "NULLABLE"}, 
+  {"name": "connection_timestamp", "type": "TIMESTAMP", "mode": "NULLABLE"}, 
+  {"name": "connection_duration", "type": "INTEGER", "mode": "NULLABLE"}, 
+  {"name": "notification_id", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "notification_type", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "notification_timestamp", "type": "TIMESTAMP", "mode": "NULLABLE"}, 
+  {"name": "notification_channels", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "delivery_status", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "whatsapp_link", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "whatsapp_number", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "email", "type": "STRING", "mode": "NULLABLE"}, 
+  {"name": "created_at", "type": "TIMESTAMP", "mode": "NULLABLE"}, 
+  {"name": "updated_at", "type": "TIMESTAMP", "mode": "NULLABLE"} 
+]
