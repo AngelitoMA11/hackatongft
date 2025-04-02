@@ -24,5 +24,9 @@ def recibir_datos():
     return jsonify({'mensaje': 'Datos recibidos correctamente', 'datos': {'nombre': nombre, 'ip': ip}}), 200
 
 if __name__ == '__main__':
+<<<<<<< Updated upstream
     port = int(os.getenv("PORT", 8080))  # Usar el puerto desde la variable de entorno
     app.run(host="0.0.0.0", port=port)
+=======
+    app.run(debug=True)
+>>>>>>> Stashed changes
