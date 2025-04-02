@@ -47,3 +47,18 @@ variable "wifi" {
   type        = string
 }
 
+variable "cloud_run_service_api_2" {
+  description = "Nombre del cloud run service 2"
+  type        = string
+}
+
+variable "repository_name_api_2" {
+  description = "Nombre del repositorio en Artifact Registry"
+  type        = string
+}
+
+variable "image_name_api_2" {
+  description = "Nombre de la imagen en Artifact Registry"
+  type        = string
+}
+

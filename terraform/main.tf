@@ -24,3 +24,13 @@ module "cloud_run_generator" {
   image_name         = var.image_name_api
   topic_wifi         = var.topic_wifi
 }
+
+module "cloud_run_2" {
+  source             = "./module/cloud_run_2"
+  project_id         = var.project_id
+  region             = var.region
+  cloud_run_service_name = var.cloud_run_service_api_2
+  repository_name    = var.repository_name_api_2
+  image_name         = var.image_name_api_2
+  topic_wifi         = var.topic_wifi
+}
