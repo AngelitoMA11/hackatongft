@@ -27,8 +27,8 @@ variable "region" {
   description = "Región de GCP donde se desplegarán los recursos."
   type        = string
 }
-variable "cloud_run_job_api" {
-  description = "Nombre del Cloud Run Job"
+variable "cloud_run_service_api" {
+  description = "Nombre del Cloud Run Service"
   type        = string
 }
 

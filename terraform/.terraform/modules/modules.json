@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"bigquery","Source":"./module/bigquery","Dir":"module/bigquery"},{"Key":"cloud_run_generator","Source":"./module/cloud_run_generator","Dir":"module/cloud_run_generator"},{"Key":"pubsub","Source":"./module/pubsub","Dir":"module/pubsub"}]}

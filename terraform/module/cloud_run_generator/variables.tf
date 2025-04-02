@@ -8,7 +8,7 @@ variable "region" {
   type        = string
 }
 
-variable "cloud_run_job_name" {
+variable "cloud_run_service_name" {
   description = "Nombre del Cloud Run Job"
   type        = string
 }

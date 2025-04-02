@@ -25,19 +25,44 @@ resource "null_resource" "build_push_image" {
   depends_on = [null_resource.docker_auth]
 }
 
-resource "google_cloud_run_v2_job" "job" {
-  name     = var.cloud_run_job_name
+resource "google_cloud_run_v2_service" "service" {
+  name     = var.cloud_run_service_name
   location = var.region
   project  = var.project_id
+  deletion_protection = false
 
   template {
-    template {
-      containers {
-        image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest"
-        
+    containers {
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest"
+
+      env {
+        name  = "GCP_PROJECT_ID"
+        value = var.project_id
+      }
+
+      env {
+        name  = "GCP_TOPIC_ID"
+        value = var.topic_wifi
+      }
+
+      ports {
+        container_port = 5000 
       }
     }
   }
-  deletion_protection = false
-  # depends_on = [null_resource.build_push_image]
+
+  traffic {
+    percent = 100
+  }
 }
+
+
+# Permitir acceso público
+resource "google_cloud_run_service_iam_member" "invoker" {
+  project  = var.project_id
+  location = var.region
+  service  = google_cloud_run_v2_service.service.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
