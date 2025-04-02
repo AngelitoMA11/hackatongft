@@ -16,5 +16,4 @@ COPY . .
 # Exponer el puerto 8080 para Cloud Run
 EXPOSE 8080
 
-# Comando de inicio
-CMD ["flask", "run"]
+CMD ["python", "api.py"]
