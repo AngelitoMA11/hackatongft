@@ -1,6 +1,6 @@
 import time
 import json
-from utils.utils import get_mac_address, get_public_ip, is_mac_registered, insert_user_data
+from utils.utils import get_mac_address, get_public_ip, is_mac_registered, insert_user_data, send_data_to_endpoint
 
 def main():
     mac_address = get_mac_address()

@@ -88,3 +88,16 @@ def send_data_to_endpoint(data):
     except Exception as e:
         print(f"Error sending data: {str(e)}")
         return False
+
+def send_data_to_endpoint(data_to_send):
+    try:
+        API_URL = os.environ.get('API_PUBSUB_URL') ### por obtener
+        response = requests.post(API_URL, json=data_to_send)
+        
+        if response.status_code == 200:
+            print("Data successfully sent to API and published to Pub/Sub")
+        else:
+            print(f"API call failed with status {response.status_code}: {response.text}")
+    
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
