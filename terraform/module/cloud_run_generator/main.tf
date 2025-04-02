@@ -25,14 +25,14 @@ resource "null_resource" "build_push_image" {
   depends_on = [null_resource.docker_auth]
 }
 
-resource "google_cloud_run_v2_service" "service" {
+resource "google_cloud_run_service" "service" {
   name     = var.cloud_run_service_name
   location = var.region
   project  = var.project_id
-  deletion_protection = false
-
+  
   template {
-    containers {
+    spec {
+      containers {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.repository_name}/${var.image_name}:latest"
 
       env {
@@ -45,14 +45,21 @@ resource "google_cloud_run_v2_service" "service" {
         value = var.topic_wifi
       }
 
-      ports {
-        container_port = 5000 
-      }
+        env {
+          name  = "PORT"
+          value = "8080"
+        }
+
+        ports {
+          container_port = 8080
+        }
     }
   }
+}
 
   traffic {
     percent = 100
+    latest_revision = true
   }
 }
 
@@ -61,8 +68,7 @@ resource "google_cloud_run_v2_service" "service" {
 resource "google_cloud_run_service_iam_member" "invoker" {
   project  = var.project_id
   location = var.region
-  service  = google_cloud_run_v2_service.service.name
+  service  = google_cloud_run_service.service.name
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
-
