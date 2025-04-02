@@ -86,13 +86,13 @@ def insert_user_data(mac_address, name, surname, email, grade, academic_year):
     
 def send_data_to_endpoint(data):
     try:
-        service_url = os.environ.get('CLOUD_RUN_SERVICE_URL')
+        API_URL = os.environ.get('API_PUBSUB_URL')
         
-        if not service_url:
-            print("Error: CLOUD_RUN_SERVICE_URL environment variable not set")
+        if not API_URL:
+            print("Error: API_PUBSUB_URL environment variable not set")
             return False
         
-        response = requests.post(f"{service_url}/data/", json=data)
+        response = requests.post(f"{API_URL}/datos/", json=data)
         
         if response.status_code == 200:
             print("Data sent successfully.")
