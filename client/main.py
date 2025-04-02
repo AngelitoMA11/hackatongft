@@ -1,6 +1,6 @@
 import time
 import json
-from utils.utils import get_mac_address, get_public_ip, is_mac_registered, insert_user_data
+from utils.utils import get_mac_address, get_public_ip, is_mac_registered, insert_user_data, send_data_to_endpoint, get_web
 
 def main():
     mac_address = get_mac_address()
@@ -15,11 +15,13 @@ def main():
         
     while True:
         ip_address = get_public_ip()
+        url_address = get_web()
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         
         data_to_send = {
             "mac_address": mac_address,
             "public_ip": ip_address,
+            "http_url": url_address,
             "timestamp": timestamp
         }
         
